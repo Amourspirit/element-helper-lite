@@ -3,5 +3,5 @@
   "rules": {
     "only-arrow-functions": true,
     "no-console": true
-  },
+  }
 }
