@@ -52,7 +52,7 @@ export enum ElLocation {
  *
  * To created simple html elements see elementCreate.
  * @example
- ```ts
+```ts
 const args: IElementCreate = {
   tag: 'div',
   attribs: {
@@ -80,7 +80,7 @@ const args: IElementCreate = {
       }]
   }]
 }
- ```
+```
  */
 export const elementsCreate = (eArgs: IElementCreate): HTMLElement => {
   const parentEl: HTMLElement = elementCreate(eArgs);

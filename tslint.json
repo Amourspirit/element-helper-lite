@@ -1,5 +1,5 @@
 {
-  "extends": ["tslint:recommended", "tslint-config-prettier"],
+  "extends": ["@ephox/tslint-rules/tslint.json", "tslint-config-prettier"],
   "rules": {
     "only-arrow-functions": true,
     "no-console": true
