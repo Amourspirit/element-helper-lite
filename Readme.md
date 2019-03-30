@@ -1,11 +1,11 @@
 # element-helper-lite
 
-![GitHub package.json version](https://img.shields.io/github/package-json/v/Amourspirit/element-helper-lite.svg) [![Codecov Coverage](https://img.shields.io/codecov/c/github/Amourspirit/element-helper-lite/coverage.svg?style=flat-square)](https://codecov.io/gh/Amourspirit/element-helper-lite/)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/Amourspirit/element-helper-lite.svg) ![GitHub](https://img.shields.io/github/license/Amourspirit/element-helper-lite.svg)
 
 ## Installation
 
 ```bash
-$ npm install element-helper-lite
+$ npm install element-helper-lite 
 ```
 
 ### Methods
