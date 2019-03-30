@@ -1,6 +1,6 @@
 {
-  "name": "create-element-lite",
-  "version": "1.0.0",
+  "name": "element-helper-lite",
+  "version": "0.1.0",
   "description": "Light wait create elements",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,10 +16,15 @@
     "postversion": "git push && git push --tags"
   },
   "keywords": [
-    "element"
+    "element",
+    "Userscript"
   ],
   "author": "Paul Moss",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Amourspirit/element-helper-lite.git"
+  },
   "files": ["lib /**/*"],
   "devDependencies": {
     "prettier": "^1.16.4",
