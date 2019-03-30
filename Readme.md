@@ -5,7 +5,7 @@
 ## Installation
 
 ```bash
-$ npm install element-helper-lite 
+$ npm i -D element-helper-lite
 ```
 
 ### Methods

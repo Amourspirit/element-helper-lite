@@ -1,6 +1,6 @@
 {
   "name": "element-helper-lite",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Light wait create elements",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -26,7 +26,7 @@
     "url": "git+https://github.com/Amourspirit/element-helper-lite.git"
   },
   "files": [
-    "lib /**/*"
+    "lib/**/*"
   ],
   "devDependencies": {
     "prettier": "^1.16.4",
