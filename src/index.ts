@@ -43,7 +43,7 @@ export enum ElLocation {
   /**
    * Represents the unknow part of the document
    */
-  other
+  other,
 }
 /**
  * Creates HTMLElement with nested child elements
@@ -171,4 +171,4 @@ export const elementAddNewToDoc = (eArgs: IElementCreate, location: ElLocation):
   const el: HTMLElement = elementsCreate(eArgs);
   elementAddToDoc(el, location);
   return el;
-}
+};
