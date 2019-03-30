@@ -25,7 +25,9 @@
     "type": "git",
     "url": "git+https://github.com/Amourspirit/element-helper-lite.git"
   },
-  "files": ["lib /**/*"],
+  "files": [
+    "lib /**/*"
+  ],
   "devDependencies": {
     "prettier": "^1.16.4",
     "tslint": "^5.14.0",
