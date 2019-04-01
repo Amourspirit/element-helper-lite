@@ -52,10 +52,10 @@ export interface IElementCreate {
    */
   html?: string;
   /**
-   * Any extra attributes to apply to element such as id, scrolling  
-   * An attribute on an element can be string or boolean value.  
-   * If the value is boolean then the attribue will only be added if the value of the element is true.  
-   * Attributes with a value of false will be ignnored!  
+   * Any extra attributes to apply to element such as id, scrolling
+   * An attribute on an element can be string or boolean value.
+   * If the value is boolean then the attribue will only be added if the value of the element is true.
+   * Attributes with a value of false will be ignnored!
    * Adding an attribute with the value of '' (Empty.String) is tha same as adding with a value of true
    */
   attribs?: { [key: string]: string | boolean };
@@ -136,11 +136,11 @@ export const elementsCreate = (eArgs: IElementCreate): HTMLElement => {
  * Creates an Html element
  * @param eArgs {IElementCreate} Extra parameters such as type and any other parameters
  * @returns {HTMLElement} Element with any extra attributes set
- * 
- * To created nested html elements see elementsCreate.  
- * An attribute on an element can be string or boolean value.  
- * If the value is boolean then the attribue will only be added if the value of the element is true.  
- * Attributes with a value of false will be ignnored!  
+ *
+ * To created nested html elements see elementsCreate.
+ * An attribute on an element can be string or boolean value.
+ * If the value is boolean then the attribue will only be added if the value of the element is true.
+ * Attributes with a value of false will be ignnored!
  * Adding an attribute with the value of '' (Empty.String) is tha same as adding with a value of true
  */
 const elementCreate = (eArgs: IElementCreate): HTMLElement => {
@@ -151,7 +151,7 @@ const elementCreate = (eArgs: IElementCreate): HTMLElement => {
         const value = eArgs.attribs[key];
         if (typeof value === 'boolean') {
           if (value === true) {
-            htmlNode.setAttribute(key, '');  
+            htmlNode.setAttribute(key, '');
           }
         } else {
           htmlNode.setAttribute(key, value.toString());
