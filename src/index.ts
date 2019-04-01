@@ -5,6 +5,38 @@
  * @param html (optional) The html to add to the element content.
  * @param attribs (optional) Array of Attributes and values to add to the element.
  * @param children (optional) child elements to add to the current element.
+ * @example
+```ts
+var args: IElementCreate = {
+  tag: 'div',
+  attribs: {
+    id: 'tinybox',
+    class: 'gmbox gmbox-window'
+  },
+  children: [{
+    tag: 'div',
+    attribs: {
+      class: 'gmclose'
+    }
+  },
+  {
+    tag: 'div',
+    attribs: {
+      id: appSettings.fullScreenRealId,
+      scroll: false // attribute will be ignored because its value is false
+    },
+    children: [{
+        tag: 'textarea',
+        attribs: {
+          id: appSettings.tinyId,
+          rows: '18',
+          cols: '66'
+          disabled: true // attribute will be written as disabled=""
+        }
+      }]
+  }]
+}
+```
  */
 export interface IElementCreate {
   /**
@@ -20,9 +52,13 @@ export interface IElementCreate {
    */
   html?: string;
   /**
-   * Any extra attributes to apply to element such as scrolling
+   * Any extra attributes to apply to element such as id, scrolling  
+   * An attribute on an element can be string or boolean value.  
+   * If the value is boolean then the attribue will only be added if the value of the element is true.  
+   * Attributes with a value of false will be ignnored!  
+   * Adding an attribute with the value of '' (Empty.String) is tha same as adding with a value of true
    */
-  attribs?: { [key: string]: string };
+  attribs?: { [key: string]: string | boolean };
   children?: IElementCreate[];
 }
 /**
@@ -48,12 +84,14 @@ export enum ElLocation {
 /**
  * Creates HTMLElement with nested child elements
  * @param eArgs The arguments that contain element(s) to add.
- * @returns HTMLElement
- *
- * To created simple html elements see elementCreate.
+ * @returns HTMLElement  
+ * An attribute on an element can be string or boolean value.  
+ * If the value is boolean then the attribue will only be added if the value of the element is true.  
+ * Attributes with a value of false will be ignnored!  
+ * Adding an attribute with the value of '' (Empty.String) is tha same as adding with a value of true
  * @example
 ```ts
-const args: IElementCreate = {
+var args: IElementCreate = {
   tag: 'div',
   attribs: {
     id: 'tinybox',
@@ -69,6 +107,7 @@ const args: IElementCreate = {
     tag: 'div',
     attribs: {
       id: appSettings.fullScreenRealId,
+      scroll: false // attribute will be ignored because its value is false
     },
     children: [{
         tag: 'textarea',
@@ -76,10 +115,13 @@ const args: IElementCreate = {
           id: appSettings.tinyId,
           rows: '18',
           cols: '66'
+          disabled: true // attribute will be written as disabled=""
         }
       }]
   }]
-}
+};
+var el = elementsCreate(args);
+elementAddToDoc(el);
 ```
  */
 export const elementsCreate = (eArgs: IElementCreate): HTMLElement => {
@@ -94,8 +136,12 @@ export const elementsCreate = (eArgs: IElementCreate): HTMLElement => {
  * Creates an Html element
  * @param eArgs {IElementCreate} Extra parameters such as type and any other parameters
  * @returns {HTMLElement} Element with any extra attributes set
- *
- * To created nested html elements see elementsCreate.
+ * 
+ * To created nested html elements see elementsCreate.  
+ * An attribute on an element can be string or boolean value.  
+ * If the value is boolean then the attribue will only be added if the value of the element is true.  
+ * Attributes with a value of false will be ignnored!  
+ * Adding an attribute with the value of '' (Empty.String) is tha same as adding with a value of true
  */
 const elementCreate = (eArgs: IElementCreate): HTMLElement => {
   const htmlNode: HTMLElement = genericCreateElement(eArgs.tag); // D.createElement('script');
@@ -103,7 +149,13 @@ const elementCreate = (eArgs: IElementCreate): HTMLElement => {
     for (const key in eArgs.attribs) {
       if (eArgs.attribs.hasOwnProperty(key)) {
         const value = eArgs.attribs[key];
-        htmlNode.setAttribute(key, value);
+        if (typeof value === 'boolean') {
+          if (value === true) {
+            htmlNode.setAttribute(key, '');  
+          }
+        } else {
+          htmlNode.setAttribute(key, value.toString());
+        }
       }
     }
   }
@@ -143,9 +195,10 @@ const addElementRecursive = (parentElement: Element, eArgs: IElementCreate[] | u
 /**
  * Adds Html element to the document
  * @param el {HTMLElement} The html element to add to the document
- * @param location The location in the document to add the element
+ * @param location The location in the document to add the element. Default location is head
+ * @returns The element tha was added to the documet
  */
-export const elementAddToDoc = (el: HTMLElement, location: ElLocation): void => {
+export const elementAddToDoc = (el: HTMLElement, location: ElLocation = ElLocation.head): HTMLElement => {
   const D: Document = document;
   let targ: Element;
   switch (location) {
@@ -160,15 +213,15 @@ export const elementAddToDoc = (el: HTMLElement, location: ElLocation): void => 
       break;
   }
   targ.appendChild(el);
+  return el;
 };
 /**
  * Creates a new Html element and adds it ot the document
  * @param eArgs The arguments that contain element(s) to add.
- * @param location The location in the document to add the element
+ * @param location The location in the document to add the element. Default location is head.
  * @returns The Html element that was added to the document
  */
-export const elementAddNewToDoc = (eArgs: IElementCreate, location: ElLocation): HTMLElement => {
+export const elementAddNewToDoc = (eArgs: IElementCreate, location: ElLocation = ElLocation.head): HTMLElement => {
   const el: HTMLElement = elementsCreate(eArgs);
-  elementAddToDoc(el, location);
-  return el;
+  return elementAddToDoc(el, location);
 };
